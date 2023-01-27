@@ -19,13 +19,14 @@ class team_name extends StatelessWidget {
         color: Colors.grey.shade800,
         borderRadius: BorderRadius.circular(20),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Text(
-        name,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
+      child: Center(
+        child: Text(
+          name,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

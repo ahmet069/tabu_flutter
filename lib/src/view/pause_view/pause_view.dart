@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../../../main.dart';
+import '../../core/config/app_router.dart';
+
 class pause_view extends StatefulWidget {
-  pause_view({Key? key}) : super(key: key);
+  final String score;
+  final int order;
+  pause_view({
+    Key? key,
+    required this.score,
+    required this.order,
+  }) : super(key: key);
 
   @override
   State<pause_view> createState() => _pause_viewState();
 }
 
 class _pause_viewState extends State<pause_view> {
-  
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       color: Colors.blueGrey,
-      
       child: SafeArea(
         bottom: true,
         child: Scaffold(
@@ -26,8 +32,6 @@ class _pause_viewState extends State<pause_view> {
 
   Widget Index() {
     double w = MediaQuery.of(context).size.width;
-    double h = MediaQuery.of(context).size.height;
-    double line_width = w - 40;
     return Container(
       color: Colors.blueGrey,
       child: Column(
@@ -53,7 +57,7 @@ class _pause_viewState extends State<pause_view> {
               color: Colors.black,
             ),
             child: Text(
-              "2",
+              widget.score,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 60,
@@ -69,13 +73,21 @@ class _pause_viewState extends State<pause_view> {
                 backgroundColor: MaterialStatePropertyAll<Color>(
                     Color.fromARGB(255, 2, 205, 100)),
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/game_view');
+              onPressed: () async {
+                if (widget.order == 1) {
+                  await router.pushAndPopUntil(
+                      Game_view(data: 'ahmet', order: 2),
+                      predicate: (route) => false);
+                } else {
+                  await router.pushAndPopUntil(Result_view(),
+                      predicate: (route) => false);
+                }
               },
               child: Text(
                 'BAŞLA',
                 style: TextStyle(
                   fontSize: 40,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),

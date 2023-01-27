@@ -38,6 +38,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   size: ^1.0.5+1
   circular_countdown_timer: ^0.2.3
+  sizer: ^2.0.15
+  auto_size_text: ^3.0.0
+  auto_route: ^5.0.4
+  build_runner: ^2.3.3
+  auto_route_generator: ^5.0.3
 
 dev_dependencies:
   flutter_test:

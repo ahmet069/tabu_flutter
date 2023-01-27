@@ -11,9 +11,9 @@ class _result_viewState extends State<result_view> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.shade100,
+      color: Colors.blueGrey,
       child: SafeArea(
-        bottom: true,
+        bottom: false,
         child: Scaffold(
           body: Index(),
         ),
@@ -25,29 +25,46 @@ class _result_viewState extends State<result_view> {
     double w = MediaQuery.of(context).size.width;
 
     return Container(
+        color: Colors.blueGrey,
         alignment: Alignment.center,
         child: Column(
           children: [
-            Column(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.orange.shade100,
-                  ),
-                  width: w,
-                  child: Text(
-                    "1. Takım skoru :10",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.orange.shade100,
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    width: w,
+                    child: Text(
+                      "1. Takım skoru :10",
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: w,
+                    child: Text(
+                      "1. Takım skoru :10",
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ));

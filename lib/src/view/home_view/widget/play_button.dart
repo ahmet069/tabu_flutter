@@ -1,4 +1,7 @@
+import 'package:auto_route/src/route/page_route_info.dart';
 import 'package:flutter/material.dart';
+import 'package:tabu/main.dart';
+import 'package:tabu/src/core/config/app_router.dart';
 
 class play_button extends StatelessWidget {
   final double width;
@@ -22,8 +25,9 @@ class play_button extends StatelessWidget {
             backgroundColor:
                 MaterialStatePropertyAll<Color>(Color.fromRGBO(77, 199, 17, 1)),
           ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/game_view');
+          onPressed: () async {
+            await router.pushAndPopUntil(Game_view(data: 'ahmet', order: 1),
+                predicate: (a) => false);
           },
           child: Text("OYNA",
               style: TextStyle(

@@ -1,8 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "04ee21c81e7f34a8e8361d25f0b6b422ea6c54c2f29b4a1568c8aa4715cc8cbe"
-build_start_time: [1674642262, 417420864]
-build_end_time: [1674642262, 439903974]
-inputs:
-  "/Users/ahmetsubasi/Desktop/flutter_projects/tabu/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1674642244, 871760845]
-  "/Users/ahmetsubasi/Desktop/flutter_projects/tabu/macos/Runner/AppDelegate.swift": !private [1671101440, 0]
-  "/Users/ahmetsubasi/Desktop/flutter_projects/tabu/macos/Runner/MainFlutterWindow.swift": !private [1671101440, 0]

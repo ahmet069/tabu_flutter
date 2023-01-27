@@ -4,9 +4,19 @@ import 'package:tabu/src/core/models/tabu_model.dart';
 import 'package:tabu/src/view/game_view/widget/score_board.dart';
 import 'package:tabu/src/view/game_view/widget/tabu_word.dart';
 import 'package:tabu/src/core/dummy_data/dummy_data.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../../main.dart';
+import '../../core/config/app_router.dart';
 
 class game_view extends StatefulWidget {
-  const game_view({super.key});
+  final String data;
+  final int order;
+  const game_view({
+    super.key,
+    required this.data,
+    required this.order,
+  });
 
   @override
   State<game_view> createState() => _game_viewState();
@@ -35,22 +45,16 @@ class _game_viewState extends State<game_view> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueGrey.shade100,
-      child: SafeArea(
+    return Scaffold(
+      body: SafeArea(
         bottom: false,
-        child: Scaffold(
-          body: Index(),
-        ),
+        child: Index(),
       ),
     );
   }
 
   Widget Index() {
     double w = MediaQuery.of(context).size.width;
-    double h = MediaQuery.of(context).size.height;
-    double line_width = w - 40;
-
     final CountDownController _controller = CountDownController();
     return Container(
       alignment: Alignment.center,
@@ -96,11 +100,14 @@ class _game_viewState extends State<game_view> {
                   tabu_word(text: _data[_counter].tabu4.toString()),
                   tabu_word(text: _data[_counter].tabu5.toString()),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/pause_view',
-                          arguments: _true - _tabu);
+                    onPressed: () async {
+                      await router.pushAndPopUntil(
+                          Pause_view(
+                              score: (_true - _tabu).toString(),
+                              order: widget.order),
+                          predicate: (a) => false);
                     },
-                    child: Text("ahmet"),
+                    child: Text(widget.data),
                   )
                 ],
                 //! Cards Area
@@ -115,7 +122,7 @@ class _game_viewState extends State<game_view> {
                   children: [
                     Container(
                       height: 100,
-                      width: w / 4,
+                      width: 25.w,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
@@ -163,7 +170,7 @@ class _game_viewState extends State<game_view> {
                     ),
                     Container(
                       height: 100,
-                      width: w / 2,
+                      width: 50.w,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
