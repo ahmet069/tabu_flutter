@@ -47,7 +47,6 @@ class _$AppRouter extends RootStackRouter {
         child: pause_view(
           key: args.key,
           score: args.score,
-          order: args.order,
         ),
       );
     },
@@ -149,14 +148,12 @@ class Pause_view extends PageRouteInfo<Pause_viewArgs> {
   Pause_view({
     Key? key,
     required String score,
-    required int order,
   }) : super(
           Pause_view.name,
           path: '/pause_view',
           args: Pause_viewArgs(
             key: key,
             score: score,
-            order: order,
           ),
         );
 
@@ -167,17 +164,14 @@ class Pause_viewArgs {
   const Pause_viewArgs({
     this.key,
     required this.score,
-    required this.order,
   });
 
   final Key? key;
 
   final String score;
 
-  final int order;
-
   @override
   String toString() {
-    return 'Pause_viewArgs{key: $key, score: $score, order: $order}';
+    return 'Pause_viewArgs{key: $key, score: $score}';
   }
 }

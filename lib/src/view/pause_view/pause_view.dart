@@ -1,98 +1,48 @@
 import 'package:flutter/material.dart';
-
-import '../../../main.dart';
-import '../../core/config/app_router.dart';
+import 'package:sizer/sizer.dart';
+import 'package:tabu/src/mobx/counter.dart';
+import 'package:tabu/src/view/pause_view/widget/pause_bottom.dart';
+import 'package:tabu/src/view/pause_view/widget/pause_score.dart';
 
 class pause_view extends StatefulWidget {
   final String score;
-  final int order;
-  pause_view({
-    Key? key,
+  const pause_view({
+    super.key,
     required this.score,
-    required this.order,
-  }) : super(key: key);
+  });
 
   @override
   State<pause_view> createState() => _pause_viewState();
 }
 
 class _pause_viewState extends State<pause_view> {
+  final counter = Counter();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueGrey,
-      child: SafeArea(
-        bottom: true,
-        child: Scaffold(
-          body: Index(),
+    return Scaffold(
+      body: SafeArea(
+        bottom: false,
+        top: false,
+        child: Container(
+          padding: EdgeInsets.only(top: 70, bottom: 40),
+          width: 100.w,
+          height: 100.h,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: new AssetImage("assets/images/pausebg.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(), //! top placeholder
+              PauseScore(score: widget.score),
+              PauseBottom(),
+            ],
+          ),
         ),
-      ),
-    );
-  }
-
-  Widget Index() {
-    double w = MediaQuery.of(context).size.width;
-    return Container(
-      color: Colors.blueGrey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            child: Text(
-              'SKOR',
-              style: TextStyle(
-                  fontSize: 70,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white),
-            ),
-          ),
-          // skore box
-          Container(
-            padding: EdgeInsets.all(20),
-            width: w / 2,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(1000),
-              color: Colors.black,
-            ),
-            child: Text(
-              widget.score,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 60,
-              ),
-            ),
-          ),
-          Container(
-            width: w,
-            height: 80,
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(
-                    Color.fromARGB(255, 2, 205, 100)),
-              ),
-              onPressed: () async {
-                if (widget.order == 1) {
-                  await router.pushAndPopUntil(
-                      Game_view(data: 'ahmet', order: 2),
-                      predicate: (route) => false);
-                } else {
-                  await router.pushAndPopUntil(Result_view(),
-                      predicate: (route) => false);
-                }
-              },
-              child: Text(
-                'BAŞLA',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          )
-        ],
       ),
     );
   }

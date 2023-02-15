@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tabu/src/mobx/counter.dart';
+import 'package:tabu/src/view/result_view/widget/home_button.dart';
+import 'package:tabu/src/view/result_view/widget/result_image.dart';
+import 'package:tabu/src/view/result_view/widget/result_line.dart';
 
 class result_view extends StatefulWidget {
   const result_view({super.key});
@@ -10,63 +15,29 @@ class result_view extends StatefulWidget {
 class _result_viewState extends State<result_view> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueGrey,
-      child: SafeArea(
-        bottom: false,
-        child: Scaffold(
-          body: Index(),
+    final counter = Provider.of<Counter>(context);
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                ResultImage(),
+                result_line(
+                  result: counter.score1,
+                  teamName: '1. Takım',
+                ),
+                result_line(
+                  result: counter.score2,
+                  teamName: '2. Takım',
+                ),
+              ],
+            ),
+            HomeButton()
+          ],
         ),
       ),
     );
-  }
-
-  Widget Index() {
-    double w = MediaQuery.of(context).size.width;
-
-    return Container(
-        color: Colors.blueGrey,
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.orange.shade100,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    width: w,
-                    child: Text(
-                      "1. Takım skoru :10",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    width: w,
-                    child: Text(
-                      "1. Takım skoru :10",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ));
   }
 }

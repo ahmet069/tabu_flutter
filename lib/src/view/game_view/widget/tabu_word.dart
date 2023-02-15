@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class tabu_word extends StatelessWidget {
   final String text;
@@ -10,17 +11,14 @@ class tabu_word extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 8.h,
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(30),
-      // ),
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 26,
+          fontSize: 28,
           color: Colors.black,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
